@@ -1,0 +1,27 @@
+{
+  "name": "products",
+  "version": "1.0.0",
+  "description": "This is product gallery",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2sagarraut2/Product-list.git"
+  },
+  "author": "Sagar Raut",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2sagarraut2/Product-list/issues"
+  },
+  "homepage": "https://github.com/2sagarraut2/Product-list#readme",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
