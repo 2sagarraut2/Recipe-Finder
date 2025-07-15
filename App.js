@@ -1,17 +1,23 @@
 import ReactDOM from "react-dom/client";
+import MainContainer from "./src/components/MainContainer";
+import "./styles.css";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
   return (
     <div>
-      <h1>App</h1>
-      <h2>App</h2>
+      <MainContainer />
     </div>
   );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<App />);
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
 
 // multiple line code - block of code { return() }
 // single line - ()

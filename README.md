@@ -1,1 +1,13 @@
-This is readme file.
+## Products - Galery of products
+
+- Header
+  - Logo - Title
+  - Home
+  - Products
+  - Login
+  - Cart
+- Body
+  - Cards
+- Footer
+  - About Us
+  - Contact us
