@@ -11,3 +11,6 @@
 - Footer
   - About Us
   - Contact us
+
+** getRecipes API called
+** Recipe card created

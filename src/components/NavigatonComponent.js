@@ -8,7 +8,7 @@ const NavigatonComponent = () => {
     },
     {
       id: 2,
-      label: "Products",
+      label: "Recipes",
     },
     {
       id: 3,
@@ -24,7 +24,7 @@ const NavigatonComponent = () => {
       {menuObject.map((menu) => {
         const { label, id } = menu;
         return (
-          <Link to="/" key={id}>
+          <Link to="/" key={id} className="menu-items">
             {label}
           </Link>
         );
