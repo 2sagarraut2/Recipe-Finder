@@ -12,5 +12,7 @@
   - About Us
   - Contact us
 
-** getRecipes API called
-** Recipe card created
+* Header created
+* Body created
+* getRecipes API called
+* Recipe card created
