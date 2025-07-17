@@ -1,9 +1,9 @@
-## Products - Galery of products
+## Recipes - Food Recipes
 
 - Header
   - Logo - Title
   - Home
-  - Products
+  - Recipes
   - Login
   - Cart
 - Body
@@ -16,3 +16,5 @@
 * Body created
 * getRecipes API called
 * Recipe card created
+* Routes added
+* Recipe details page created

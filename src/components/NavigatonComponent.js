@@ -1,30 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavigatonComponent = () => {
+  const navigate = useNavigate();
   const menuObject = [
     {
       id: 1,
       label: "Home",
+      path: "/",
     },
     {
       id: 2,
       label: "Recipes",
+      path: "/recipes",
     },
     {
       id: 3,
       label: "Login",
-    },
-    {
-      id: 4,
-      label: "Cart",
+      path: "/",
     },
   ];
   return (
     <div className="navigation-component">
       {menuObject.map((menu) => {
-        const { label, id } = menu;
+        const { label, id, path } = menu;
         return (
-          <Link to="/" key={id} className="menu-items">
+          <Link to={path} key={id} className="menu-items">
             {label}
           </Link>
         );

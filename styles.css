@@ -1,116 +1,292 @@
-/* Main Container */
+/* Import a clean modern font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
-    margin: 0;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fafafa;
+  color: #333;
 }
 
+/* Main Container */
 .main-container {
-    
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px;
 }
 
 /* Header */
-.header { 
-    border: 1px solid black;
-    display: flex;
-    justify-content: space-around;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 32px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
 .logo-container {
-    border: 1px solid black;
-    display: flex;
+  display: flex;
+  align-items: center;
 }
 
 .logo {
-    width: 100px;
-    border-radius: 15px;
-    /* padding: 10px; */
+  width: 100%;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .title-wrapper {
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
 }
 
 .title-wrapper > h3 {
-    font-weight: bolder;
-    margin: 0;
-    font-size: x-large;
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin: 0;
+  color: #222;
+  text-decoration: none;
+}
+
+.no-underline {
+  text-decoration: none;
+  color: inherit; /* optional: keeps text color consistent */
 }
 
 .navigation-container {
-    border: 1px solid black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 .navigation-component {
-    display: flex;
+  display: flex;
+  gap: 24px;
 }
 
 .menu-items {
-    margin-left: 30px;
-    margin-right: 30px;
-    font-size: large;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu-items:hover {
+  color: #1e88e5;
 }
 
 /* Body */
 .body {
-  /* display: flex; */
   padding-top: 16px;
-  padding-left: 200px;
 }
 
 .recipes-wrapper {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
 }
 
 .recipe-card {
-    display: flex;
-    padding: 10px;
-    transition: box-shadow 0.3s ease;
-    border-radius: 20px;
-    margin: 0.5%;
-    width: 500px;
-    border: 1px solid #f0f6f5;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  width: 320px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.recipes-wrapper-shimmer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.recipe-card-shimmer {
+  width: 250px;
+  height: 180px;
+  border-radius: 12px;
+  background: linear-gradient(
+    100deg,
+    #f0f0f0 30%,
+    #e0e0e0 40%,
+    #f0f0f0 60%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
 }
 
 .recipe-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* transform: translateY(-6px); */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.receipes-data {
-    padding-top: 1%;
-}
-
-.receipes-data > h2, h3, h4, h6 {
-    margin: 0;
+.recipe-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
 .recipe-image {
-  width: 180px;
-  height: auto;
-  margin-right: 16px;
-  border-radius: 8px;
-  object-fit: cover;
+  width: 100%;
+  height: 120%;
+  display: block;
+}
+
+.receipes-data {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.receipes-data h2,
+.receipes-data h3,
+.receipes-data h4 {
+  white-space: nowrap;        /* Prevent line breaks */
+  overflow: hidden;           /* Hide overflowing text */
+  text-overflow: ellipsis;    /* Show "..." */
+  max-width: 100%;            /* Required for ellipsis to work */
+}
+
+.receipes-data h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.receipes-data h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.receipes-data h4,
+.receipes-data h6 {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #777;
+  margin: 0;
+}
+
+.icon-inline {
+  margin-right: 4px;
 }
 
 .see-more-button {
-    margin-top: 10px;
+  margin: 5%;
+  padding: 10px 16px;
+  background-color: #ff7043;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.3s ease;
+  width: 90%;
 }
 
-/* Text styles inside product card */
-.product-card h2,
-.product-card h3,
-.product-card h4,
-.product-card p {
-  margin: 4px 0;
+.see-more-button:hover {
+  background-color: #f4511e;
 }
 
+.read-more-data {
+    margin: 5%;
+}
+
+.read-more-element {
+    font-size: medium;
+}
+
+.see-more-data-wrapper {
+
+}
+
+.recipe-details-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.recipe-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid #ddd;
+  padding: 2rem;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.recipe-details:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.recipe-image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-image-details {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.recipe-image-details:hover {
+  transform: scale(1.03);
+}
+
+/* Optional Responsive */
+@media (max-width: 768px) {
+  .recipe-details {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .recipe-image-details {
+    max-width: 100%;
+  }
+}
+
+.ingredients-label {
+    font-weight: 550;
+    margin-top: 3%;
+}
 
 /* Footer */
 .footer {
-    border: 1px solid black;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 40px;
 }

@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom/client";
 import MainContainer from "./src/components/MainContainer";
 import "./styles.css";
-import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
   return (
@@ -13,11 +12,7 @@ const App = () => {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+root.render(<App />);
 
 // multiple line code - block of code { return() }
 // single line - ()

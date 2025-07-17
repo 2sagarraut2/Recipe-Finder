@@ -12,7 +12,7 @@ const Header = () => {
             <LogoComponent />
           </div>
           <div className="title-wrapper">
-            <h3>{TITLE}</h3>
+            <h3 className="no-underline">{TITLE}</h3>
           </div>
         </div>
       </Link>
