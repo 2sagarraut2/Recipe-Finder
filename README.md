@@ -18,3 +18,8 @@
 * Recipe card created
 * Routes added
 * Recipe details page created
+* CSS updated
+* Pagination added
+* Shimmer loading added
+* Search Component added
+* Filter Component added

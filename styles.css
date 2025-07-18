@@ -8,23 +8,44 @@ body {
   color: #333;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* Main Container */
 .main-container {
-  max-width: 1200px;
+  max-width: 80%;
   margin: auto;
   padding: 10px;
 }
 
 /* Header */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 32px;
   background-color: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   margin-bottom: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 14px 32px;
+
+  background: rgba(255, 255, 255, 0.33);
+  box-shadow: 0 4px 10px rgba(148, 148, 148, 0.1);
+  backdrop-filter: blur(6.3px);
+  -webkit-backdrop-filter: blur(6.3px);
+
+  transition: all 0.3s ease-in-out;
+  border-radius: 0; /* No border-radius on fixed headers */
+  overflow-x: hidden;
 }
 
 .logo-container {
@@ -83,7 +104,94 @@ body {
 
 /* Body */
 .body {
-  padding-top: 16px;
+  padding-top: 8%;
+  border-bottom: 1px solid red;
+}
+
+.search-filter-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    width: 85%;
+}
+
+.search-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 2%;
+}
+
+.search-box {
+    width: 100%;
+    padding: 10px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.2s ease;
+}
+
+.search-box:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4f46e5; /* Indigo-600 */
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-button:hover {
+    background-color: #4338ca; /* Indigo-700 */
+    transform: translateY(-1px);
+}
+
+.search-button:active {
+    background-color: #3730a3; /* Indigo-800 */
+    transform: translateY(0);
+}
+
+.search-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4);
+}
+
+.filter-wrapper {
+    min-width: 200px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter-wrapper select,
+.filter-wrapper button {
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-wrapper button:hover,
+.filter-wrapper select:hover {
+    background-color: #f3f4f6;
+    border-color: #9ca3af;
 }
 
 .recipes-wrapper {
@@ -222,6 +330,37 @@ body {
 
 }
 
+.pagination-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.prev-button,
+.next-button {
+  padding: 10px 20px;
+  margin: 10px 5px;
+  background-color: #4caf50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  background-color: #45a049;
+}
+
+.prev-button:disabled,
+.next-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
 .recipe-details-wrapper {
   display: flex;
   justify-content: center;
@@ -288,5 +427,12 @@ body {
   padding: 20px 0;
   font-size: 0.9rem;
   color: #999;
-  margin-top: 40px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.footer-items {
+    margin: 0 2%;
 }
