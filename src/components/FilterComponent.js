@@ -1,29 +1,18 @@
-const FilterComponent = () => {
-  const filterObj = [
-    {
-      id: 1,
-      label: "Calories: Low to High",
-    },
-    {
-      id: 2,
-      label: "Calories: High to Low",
-    },
-    {
-      id: 3,
-      label: "Ratings: Low to High",
-    },
-    {
-      id: 4,
-      label: "Ratings: High to Low",
-    },
-  ];
+import { useState } from "react";
+
+const FilterComponent = ({ onSortChange, sortOrder, setSortOrder }) => {
+  const handleChange = (e) => {
+    setSortOrder(e.target.value);
+    onSortChange(e.target.value); // Pass to parent for actual sorting
+  };
 
   return (
-    <div className="filter-wrapper">
-      <select>
-        {filterObj.map((filter) => {
-          return <option key={filter.id}>{filter.label}</option>;
-        })}
+    <div className="sort-dropdown-wrapper">
+      <label htmlFor="sort">Sort by:</label>
+      <select id="sort" value={sortOrder} onChange={handleChange}>
+        <option value="default">Default</option>
+        <option value="lowToHigh">Calories: Low to High</option>
+        <option value="highToLow">Calories: High to Low</option>
       </select>
     </div>
   );

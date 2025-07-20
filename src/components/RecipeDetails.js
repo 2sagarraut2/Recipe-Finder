@@ -13,7 +13,7 @@ const RecipeDetails = () => {
 
   useEffect(() => {
     console.log(id);
-    getRecipeById(id);
+    getRecipeById();
   }, [id]);
 
   const getRecipeById = async () => {

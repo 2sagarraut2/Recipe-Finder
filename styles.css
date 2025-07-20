@@ -171,27 +171,30 @@ body {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4);
 }
 
-.filter-wrapper {
-    min-width: 200px;
-    display: flex;
-    justify-content: flex-end;
+.sort-dropdown-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.filter-wrapper select,
-.filter-wrapper button {
-    padding: 10px 14px;
-    font-size: 16px;
-    border-radius: 12px;
-    border: 1px solid #d1d5db;
-    background-color: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
+.sort-dropdown-wrapper label {
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.filter-wrapper button:hover,
-.filter-wrapper select:hover {
-    background-color: #f3f4f6;
-    border-color: #9ca3af;
+.sort-dropdown-wrapper select {
+  padding: 8px 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #fff;
+  transition: border 0.2s ease;
+}
+
+.sort-dropdown-wrapper select:hover {
+  border-color: #888;
 }
 
 .recipes-wrapper {

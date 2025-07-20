@@ -13,30 +13,32 @@ import SearchComponent from "./SearchComponent";
 import FilterComponent from "./FilterComponent";
 
 const Body = () => {
+  const [originalRecipesData, setOriginalRecipesData] = useState([]);
   const [recipesData, setRecipesData] = useState([]);
-  const [filteredRecipesData, setFilteredRecipesData] = useState({});
+  // const [filteredRecipesData, setFilteredRecipesData] = useState({});
   const [showReadMore, setShowReadMore] = useState(false);
   const [skip, setSkip] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [limit, setLimit] = useState(10);
+  const [sortOrder, setSortOrder] = useState("default");
 
   useEffect(() => {
     console.log("useEffect called...");
-    getRecipes();
+    getRecipesData();
   }, [skip, limit]);
 
-  const getRecipes = async () => {
+  const getRecipesData = async () => {
     setLoading(true);
     const data = await fetch(
       `https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`
+      // https://dummyjson.com/recipes?limit=10&skip=0
+      // https://dummyjson.com/recipes?limit=10&skip=10
     );
+    const recipesData = await data.json();
 
-    console;
-
-    const recipesData = await data.json(); // parsing
-    // console.log(recipesData.recipes);
-    setRecipesData(recipesData?.recipes);
+    setRecipesData(recipesData?.recipes || []);
+    setOriginalRecipesData(recipesData?.recipes || []);
     setTotal(recipesData?.total);
     setLoading(false);
   };
@@ -46,14 +48,10 @@ const Body = () => {
     const data = await fetch(
       "https://dummyjson.com/recipes/search?q=Margherita"
     );
-
     const resultRecipes = await data.json();
-    console.log(resultRecipes);
-    setFilteredRecipesData(resultRecipes);
-    console.log(resultRecipes?.recipes);
-    setRecipesData(resultRecipes?.recipes);
+
+    setRecipesData(resultRecipes?.recipes || []);
     setTotal(resultRecipes?.total);
-    setLimit(resultRecipes?.limit);
     setLoading(false);
   };
 
@@ -62,7 +60,23 @@ const Body = () => {
   };
 
   const handleSearchClear = () => {
+    console.log("clear pressed");
+    setSortOrder("default");
     setLimit(10);
+    setSkip(0);
+    getRecipesData();
+  };
+
+  const handleSort = (value) => {
+    let sorted = [...recipesData];
+
+    if (value === "lowToHigh") {
+      sorted.sort((a, b) => a.caloriesPerServing - b.caloriesPerServing);
+    } else if (value === "highToLow") {
+      sorted.sort((a, b) => b.caloriesPerServing - a.caloriesPerServing);
+    } // default just uses original
+
+    setRecipesData(sorted);
   };
 
   return (
@@ -73,7 +87,11 @@ const Body = () => {
         <div className="recipes-wrapper">
           <div className="search-filter-wrapper">
             <SearchComponent searchRecipes={searchRecipes} />
-            <FilterComponent />
+            <FilterComponent
+              onSortChange={handleSort}
+              sortOrder={sortOrder}
+              setSortOrder={setSortOrder}
+            />
             <button className="search-button" onClick={handleSearchClear}>
               Clear
             </button>
