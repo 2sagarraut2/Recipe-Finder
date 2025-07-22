@@ -23,3 +23,15 @@
 * Shimmer loading added
 * Search Component added
 * Filter Component added
+* Sidebar position changed
+* fix title link tag
+* fix body margin and padding
+* fix Sidebar CSS
+* Add sidebar bottom element
+* create and show Footer
+* Siderbar responsivness - todo
+* Add context API - todo
+* create Custom Hooks - todo
+* Add Error boundaries - todo
+* Implement Code splitting and lazy loading - todo
+* implement HOC - todo

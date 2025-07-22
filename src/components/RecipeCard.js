@@ -94,27 +94,6 @@ const RecipeCard = ({ recipesData }) => {
                     setShowReadMore={setShowReadMore}
                   />
                 )}
-                {/* <span className="ingredients-label">{INGREDIENTS}</span>
-                  <div className="see-more-data-wrapper">
-                    {ingredients.map((ingredient) => {
-                      return (
-                        <span className="read-more-element" key={ingredient}>
-                          {ingredient}{" "}
-                        </span>
-                      );
-                    })}
-                  </div>
-
-                  <span className="ingredients-label">{INSTRUCTIONS}</span>
-                  <div className="see-more-data-wrapper">
-                    {instructions.map((instruction) => {
-                      return (
-                        <span className="read-more-element" key={instruction}>
-                          {instruction}
-                        </span>
-                      );
-                    })}
-                  </div> */}
               </div>
             </div>
           </div>

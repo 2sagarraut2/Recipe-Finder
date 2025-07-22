@@ -8,17 +8,14 @@ const Header = () => {
     <div className="header">
       <Link to="/">
         <div className="logo-container">
-          <div>
-            <LogoComponent />
-          </div>
-          <div className="title-wrapper">
-            <h3 className="no-underline">{TITLE}</h3>
-          </div>
+          <LogoComponent />
+          <div className="title-wrapper no-underline">{TITLE}</div>
         </div>
       </Link>
       <div className="navigation-container">
         <NavigatonComponent />
       </div>
+      <div className="header-bottom-text">Made with ❤️ in India</div>
     </div>
   );
 };

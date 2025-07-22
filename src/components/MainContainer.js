@@ -3,34 +3,37 @@ import Body from "./Body";
 import Footer from "./Footer";
 import Header from "./Header";
 import RecipeDetails from "./RecipeDetails";
+import SearchComponent from "./SearchComponent";
+import { RecipeProvider } from "../context/RecipeContext";
+import Error from "./Error";
 
 // Layout with Header and Footer shown on every page
 const AppLayout = () => {
   return (
-    <>
-      <Header />
-      <Outlet /> {/* renders child route component */}
-      <Footer />
-    </>
+    <div className="app-layout">
+      <Header /> {/* Sidebar now */}
+      <div className="main-content">
+        <Outlet /> {/* Content of current route */}
+        <Footer />
+      </div>
+    </div>
   );
 };
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: <AppLayout />, // Header + Footer layout
     children: [
       {
-        path: "/",
-        element: <Body />,
-      },
-      {
-        path: "/recipes",
-        element: <Body />,
-      },
-      {
-        path: "/recipe/:id", // assuming you pass an ID for details
-        element: <RecipeDetails />,
+        // errorElement: <Error />, // Custom error component
+        children: [
+          { path: "/", element: <Body /> },
+          { path: "/recipes", element: <Body /> },
+          { path: "/recipe/:id", element: <RecipeDetails /> },
+          { path: "/search", element: <SearchComponent /> },
+          { path: "*", element: <Error /> },
+        ],
       },
     ],
   },
@@ -38,35 +41,12 @@ const appRouter = createBrowserRouter([
 
 const MainContainer = () => {
   return (
-    <div className="main-container">
-      <RouterProvider router={appRouter} />
-    </div>
+    <RecipeProvider>
+      <div className="main-container">
+        <RouterProvider router={appRouter} />
+      </div>
+    </RecipeProvider>
   );
 };
 
 export default MainContainer;
-
-// const Body = () => {
-//   const appRouter = createBrowserRouter([
-//     {
-//       path: "/",
-//       element: <Login />,
-//     },
-//     {
-//       path: "/browse",
-//       element: <Browse />,
-//     },
-//     {
-//       path: "/info/:id",
-//       element: <MovieInfoPopup />,
-//     },
-//   ]);
-
-//   return (
-//     <div>
-//       <RouterProvider router={appRouter}></RouterProvider>
-//     </div>
-//   );
-// };
-
-// export default Body;

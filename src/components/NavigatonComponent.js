@@ -1,33 +1,61 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { HiHome, HiSearch, HiUser } from "react-icons/hi";
+import { NavLink } from "react-router-dom";
 
 const NavigatonComponent = () => {
+  const [loginStatus, setLoginStatus] = useState("Login");
+
   const menuObject = [
     {
       id: 1,
       label: "Home",
       path: "/",
+      icon: <HiHome fontSize={20} />,
     },
     {
       id: 2,
-      label: "Recipes",
-      path: "/recipes",
+      label: "Search",
+      path: "/search",
+      icon: <HiSearch fontSize={20} />,
     },
     {
       id: 3,
       label: "Login",
-      path: "/",
+      path: "/login",
+      icon: <HiUser fontSize={20} />,
     },
   ];
+
   return (
     <div className="navigation-component">
       {menuObject.map((menu) => {
-        const { label, id, path } = menu;
+        const { label, id, path, icon } = menu;
         return (
-          <Link to={path} key={id} className="menu-items">
-            {label}
-          </Link>
+          <NavLink
+            to={path}
+            key={id}
+            className={({ isActive }) =>
+              isActive
+                ? "navigation-button menu-items active"
+                : "navigation-button menu-items"
+            }
+          >
+            {icon} {label}
+          </NavLink>
         );
       })}
+      <button
+        onClick={() => {
+          {
+            loginStatus === "Login"
+              ? setLoginStatus("Logout")
+              : setLoginStatus("Login");
+          }
+          console.log(loginStatus);
+        }}
+      >
+        {loginStatus}
+      </button>
     </div>
   );
 };

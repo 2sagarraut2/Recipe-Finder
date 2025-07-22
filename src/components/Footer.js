@@ -1,34 +1,17 @@
 import { Link } from "react-router-dom";
+import LogoComponent from "./LogoComponent";
 
 const Footer = () => {
-  const menuObject = [
-    {
-      id: 1,
-      label: "Home",
-      path: "/",
-    },
-    {
-      id: 2,
-      label: "Recipes",
-      path: "/recipes",
-    },
-    {
-      id: 3,
-      label: "Login",
-      path: "/",
-    },
-  ];
-
   return (
     <div className="footer">
-      {menuObject.map((menu) => {
-        const { label, id, path } = menu;
-        return (
-          <Link to={path} key={id} className="footer-items">
-            {label}
-          </Link>
-        );
-      })}
+      <div>
+        <img
+          className="logo-footer"
+          src="https://dcassetcdn.com/design_img/10150/18538/18538_298076_10150_image.jpg"
+          alt="logo"
+          loading="lazy"
+        />
+      </div>
     </div>
   );
 };
