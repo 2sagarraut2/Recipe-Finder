@@ -29,7 +29,7 @@
 * fix Sidebar CSS
 * Add sidebar bottom element
 * create and show Footer
-* Display custome error page
+* Display custom error page
 * Siderbar responsivness - todo
 * Add context API - todo
 * create Custom Hooks - todo

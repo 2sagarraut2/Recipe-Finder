@@ -9,3 +9,5 @@ export const PAGE_LOOKING_FOR =
   "We couldn't find the page you were looking for.";
 export const MOVED_DELETED = "It might have been moved or deleted.";
 export const GOTO_HOME = "🏠 Go to Homepage";
+export const READY_FLAVOUR =
+  "Craving something tasty? Explore mouthwatering options";

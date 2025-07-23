@@ -11,9 +11,9 @@ import Error from "./Error";
 const AppLayout = () => {
   return (
     <div className="app-layout">
-      <Header /> {/* Sidebar now */}
+      <Header />
       <div className="main-content">
-        <Outlet /> {/* Content of current route */}
+        <Outlet />
         <Footer />
       </div>
     </div>
@@ -25,16 +25,10 @@ const appRouter = createBrowserRouter([
     path: "/",
     element: <AppLayout />, // Header + Footer layout
     children: [
-      {
-        // errorElement: <Error />, // Custom error component
-        children: [
-          { path: "/", element: <Body /> },
-          { path: "/recipes", element: <Body /> },
-          { path: "/recipe/:id", element: <RecipeDetails /> },
-          { path: "/search", element: <SearchComponent /> },
-          { path: "*", element: <Error /> },
-        ],
-      },
+      { path: "/", element: <Body /> },
+      { path: "/recipe/:id", element: <RecipeDetails /> },
+      { path: "/search", element: <SearchComponent /> },
+      { path: "*", element: <Error /> },
     ],
   },
 ]);

@@ -1,70 +1,91 @@
 import { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
-import PaginationComponent from "./PaginationComponent";
 import Shimmer from "./Shimmer";
+import { useSearchParams } from "react-router-dom";
+import { READY_FLAVOUR } from "../utils/constants";
 
 const SearchComponent = () => {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [recipesData, setRecipesData] = useState([]);
-  const [showReadMore, setShowReadMore] = useState(false);
-  const [skip, setSkip] = useState(0);
-  const [limit, setLimit] = useState(10);
-  const [sortOrder, setSortOrder] = useState("default");
+  // const [showReadMore, setShowReadMore] = useState(false);
+  // const [sortOrder, setSortOrder] = useState("default");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchText, setSearchText] = useState(searchParams.get("q") || "");
 
   const handleRecipeSearch = () => {
-    searchRecipes();
+    searchRecipes(searchText);
   };
 
-  const searchRecipes = async () => {
+  const searchRecipes = async (searchText) => {
     setLoading(true);
     const data = await fetch(
-      "https://dummyjson.com/recipes/search?q=Margherita"
+      `https://dummyjson.com/recipes/search?q=${searchText}`
     );
     const resultRecipes = await data.json();
 
+    setRecipesData(resultRecipes?.recipes || []);
     setTotal(resultRecipes?.total);
     setLoading(false);
   };
 
+  const handleClearClicked = () => {
+    setSearchText("");
+    setRecipesData([]);
+    setSearchParams("");
+  };
+
   useEffect(() => {
     console.log("useEffect called...");
-    getRecipesData();
-  }, [skip, limit]);
-
-  const getRecipesData = async () => {
-    setLoading(true);
-    const data = await fetch(
-      `https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`
-    );
-    const recipesData = await data.json();
-
-    setRecipesData(recipesData?.recipes || []);
-    setTotal(recipesData?.total);
-    setLoading(false);
-  };
+    if (searchText) {
+      searchRecipes(searchText);
+    }
+  }, []);
 
   return (
     <div className="body">
-      {loading ? (
-        <Shimmer />
-      ) : (
-        <>
-          <div className="search-wrapper">
-            <input id="search" type="text" className="search-box" />
-            <button className="search-button" onClick={handleRecipeSearch}>
-              Search
-            </button>
-          </div>
-          <RecipeCard recipesData={recipesData} />
-          <PaginationComponent
-            skip={skip}
-            limit={limit}
-            total={total}
-            setSkip={setSkip}
+      <div className="search-wrapper-wrapper">
+        <div className="search-wrapper">
+          <input
+            id="search"
+            type="text"
+            className="search-box"
+            placeholder="search for recipe..."
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+              setSearchParams({ q: e.target.value });
+              console.log(searchText);
+            }}
           />
-        </>
-      )}
+          <button className="search-button" onClick={handleRecipeSearch}>
+            Search
+          </button>
+          <button className="search-button" onClick={handleClearClicked}>
+            Clear
+          </button>
+        </div>
+        {loading ? (
+          <Shimmer />
+        ) : (
+          <div className="search-data-wrapper">
+            {searchText ? (
+              <RecipeCard recipesData={recipesData} />
+            ) : (
+              <h3>
+                <span>
+                  {READY_FLAVOUR}
+                  <span className="bouncing-dots">
+                    <span>.</span>
+                    <span>.</span>
+                    <span>.</span>
+                  </span>
+                </span>
+              </h3>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
