@@ -1,4 +1,7 @@
 export const TITLE = "Food Recipes";
+export const RECIPES_API = "https://dummyjson.com/recipes?limit=";
+export const ONE_RECIPE_API = "https://dummyjson.com/recipes/";
+export const SEARCH_RECIPE_API = "https://dummyjson.com/recipes/search?q=";
 export const MINS = "mins.";
 export const PERSONS = "persons";
 export const SEE_MORE = "Read More";

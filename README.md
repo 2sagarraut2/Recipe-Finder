@@ -30,9 +30,9 @@
 * Add sidebar bottom element
 * create and show Footer
 * Display custom error page
+* implement HOC
+* Add context API
+* Add Error boundaries
 * Siderbar responsivness - todo
-* Add context API - todo
 * create Custom Hooks - todo
-* Add Error boundaries - todo
 * Implement Code splitting and lazy loading - todo
-* implement HOC - todo

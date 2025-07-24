@@ -4,10 +4,12 @@ import {
   INSTRUCTIONS,
   MINS,
   PERSONS,
+  RECIPES_API,
   SEE_MORE,
 } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import RecipeCard from "./RecipeCard";
+import RecipeCardHOC from "./RecipeCardHOC";
 import PaginationComponent from "./PaginationComponent";
 
 const Body = () => {
@@ -21,15 +23,12 @@ const Body = () => {
   const [sortOrder, setSortOrder] = useState("default");
 
   useEffect(() => {
-    console.log("useEffect called...");
     getRecipesData();
   }, [skip, limit]);
 
   const getRecipesData = async () => {
     setLoading(true);
-    const data = await fetch(
-      `https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`
-    );
+    const data = await fetch(RECIPES_API + limit + "&skip=" + skip);
     const recipesData = await data.json();
 
     setRecipesData(recipesData?.recipes || []);
@@ -62,6 +61,8 @@ const Body = () => {
     setRecipesData(sorted);
   };
 
+  const LabelRecipeCard = RecipeCardHOC(RecipeCard);
+
   return (
     <div className="body">
       <div>
@@ -69,7 +70,19 @@ const Body = () => {
           <Shimmer />
         ) : (
           <>
-            <RecipeCard recipesData={recipesData} />
+            <div className="recipes-wrapper">
+              {recipesData.map((recipe) => {
+                return (
+                  <div key={recipe.id} className="recipe-card">
+                    {recipe.caloriesPerServing <= 200 ? (
+                      <LabelRecipeCard recipesData={recipe} />
+                    ) : (
+                      <RecipeCard key={recipe.id} recipesData={recipe} />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
             <PaginationComponent
               skip={skip}
               limit={limit}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 import Shimmer from "./Shimmer";
 import { useSearchParams } from "react-router-dom";
-import { READY_FLAVOUR } from "../utils/constants";
+import { READY_FLAVOUR, SEARCH_RECIPE_API } from "../utils/constants";
 
 const SearchComponent = () => {
   const [total, setTotal] = useState(0);
@@ -19,9 +19,7 @@ const SearchComponent = () => {
 
   const searchRecipes = async (searchText) => {
     setLoading(true);
-    const data = await fetch(
-      `https://dummyjson.com/recipes/search?q=${searchText}`
-    );
+    const data = await fetch(SEARCH_RECIPE_API + searchText);
     const resultRecipes = await data.json();
 
     setRecipesData(resultRecipes?.recipes || []);
@@ -33,10 +31,10 @@ const SearchComponent = () => {
     setSearchText("");
     setRecipesData([]);
     setSearchParams("");
+    setLoading(false);
   };
 
   useEffect(() => {
-    console.log("useEffect called...");
     if (searchText) {
       searchRecipes(searchText);
     }
@@ -70,7 +68,15 @@ const SearchComponent = () => {
         ) : (
           <div className="search-data-wrapper">
             {searchText ? (
-              <RecipeCard recipesData={recipesData} />
+              <div className="recipes-wrapper">
+                {recipesData.map((recipe) => {
+                  return (
+                    <div key={recipe.id} className="recipe-card">
+                      <RecipeCard key={recipe.id} recipesData={recipe} />
+                    </div>
+                  );
+                })}
+              </div>
             ) : (
               <h3>
                 <span>

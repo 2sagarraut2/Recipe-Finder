@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { INGREDIENTS, INSTRUCTIONS, MINS, PERSONS } from "../utils/constants";
+import {
+  INGREDIENTS,
+  INSTRUCTIONS,
+  MINS,
+  ONE_RECIPE_API,
+  PERSONS,
+} from "../utils/constants";
 import { useParams } from "react-router";
 import { FaBowlFood, FaStar } from "react-icons/fa6";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
@@ -26,7 +32,7 @@ const RecipeDetails = () => {
   const getRecipeById = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`https://dummyjson.com/recipes/${id}`);
+      const res = await fetch(`${ONE_RECIPE_API}${id}`);
       const data = await res.json();
       console.log(data);
       setRecipeDetails(data);
@@ -90,20 +96,25 @@ const RecipeDetails = () => {
             </div>
             <span className="ingredients-label">{INGREDIENTS}</span>
             <div className="see-more-data-wrapper">
-              {recipeDetails?.ingredients?.map((ingredient) => (
-                <span className="read-more-element" key={ingredient}>
-                  {ingredient}
-                </span>
-              ))}
+              {recipeDetails?.ingredients?.map((ingredient) => {
+                return (
+                  <span className="read-more-element" key={ingredient}>
+                    {ingredient}
+                  </span>
+                );
+              })}
             </div>
 
             <span className="ingredients-label">{INSTRUCTIONS}</span>
             <div className="see-more-data-wrapper">
-              {recipeDetails?.instructions?.map((instruction) => (
-                <span className="read-more-element" key={instruction}>
-                  {instruction}
-                </span>
-              ))}
+              {recipeDetails?.instructions?.map((instruction, index) => {
+                console.log(instruction);
+                return (
+                  <span className="read-more-element" key={instruction}>
+                    {index + 1}. {instruction}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
