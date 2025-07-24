@@ -3,8 +3,6 @@ import { HiHome, HiSearch, HiUser } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 
 const NavigatonComponent = () => {
-  const [loginStatus, setLoginStatus] = useState("Login");
-
   const menuObject = [
     {
       id: 1,
@@ -44,18 +42,6 @@ const NavigatonComponent = () => {
           </NavLink>
         );
       })}
-      <button
-        onClick={() => {
-          {
-            loginStatus === "Login"
-              ? setLoginStatus("Logout")
-              : setLoginStatus("Login");
-          }
-          console.log(loginStatus);
-        }}
-      >
-        {loginStatus}
-      </button>
     </div>
   );
 };

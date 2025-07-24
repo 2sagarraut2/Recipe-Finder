@@ -79,14 +79,7 @@ const SearchComponent = () => {
               </div>
             ) : (
               <h3>
-                <span>
-                  {READY_FLAVOUR}
-                  <span className="bouncing-dots">
-                    <span>.</span>
-                    <span>.</span>
-                    <span>.</span>
-                  </span>
-                </span>
+                <span>{READY_FLAVOUR}</span>
               </h3>
             )}
           </div>

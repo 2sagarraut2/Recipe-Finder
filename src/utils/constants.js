@@ -13,4 +13,4 @@ export const PAGE_LOOKING_FOR =
 export const MOVED_DELETED = "It might have been moved or deleted.";
 export const GOTO_HOME = "🏠 Go to Homepage";
 export const READY_FLAVOUR =
-  "Craving something tasty? Explore mouthwatering options";
+  "Craving something tasty? Explore mouthwatering options...";

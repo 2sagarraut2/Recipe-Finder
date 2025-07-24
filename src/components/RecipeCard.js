@@ -12,6 +12,7 @@ import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { PiChefHatFill } from "react-icons/pi";
 import { BiSolidDish } from "react-icons/bi";
 import { useNavigate } from "react-router";
+import { NavLink } from "react-router-dom";
 
 const RecipeCard = ({ recipesData }) => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const RecipeCard = ({ recipesData }) => {
 
   return (
     <>
-      <div key={id} className="recipe-card">
+      <NavLink key={id} className="no_underline" to={"/recipe/" + id}>
         <div className="recipe-image-container">
           <img src={image} alt={name} className="recipe-image" loading="lazy" />
         </div>
@@ -68,7 +69,7 @@ const RecipeCard = ({ recipesData }) => {
               {PERSONS}
             </h4>
           </div>
-          <div>
+          {/* <div>
             <button
               className="see-more-button"
               onClick={() => {
@@ -77,7 +78,7 @@ const RecipeCard = ({ recipesData }) => {
             >
               {SEE_MORE}
             </button>
-          </div>
+          </div> */}
 
           <div className="read-more-data">
             {showReadMore && (
@@ -89,7 +90,7 @@ const RecipeCard = ({ recipesData }) => {
             )}
           </div>
         </div>
-      </div>
+      </NavLink>
     </>
   );
 };

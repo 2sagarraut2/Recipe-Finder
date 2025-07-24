@@ -33,6 +33,7 @@
 * implement HOC
 * Add context API
 * Add Error boundaries
+* RecipeCard converted to NavLink
 * Siderbar responsivness - todo
 * create Custom Hooks - todo
 * Implement Code splitting and lazy loading - todo
