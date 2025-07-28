@@ -53,7 +53,6 @@ const SearchComponent = () => {
             onChange={(e) => {
               setSearchText(e.target.value);
               setSearchParams({ q: e.target.value });
-              console.log(searchText);
             }}
           />
           <button className="search-button" onClick={handleRecipeSearch}>
@@ -72,7 +71,7 @@ const SearchComponent = () => {
                 {recipesData.map((recipe) => {
                   return (
                     <div key={recipe.id} className="recipe-card">
-                      <RecipeCard key={recipe.id} recipesData={recipe} />
+                      <RecipeCard key={recipe.id} recipe={recipe} />
                     </div>
                   );
                 })}

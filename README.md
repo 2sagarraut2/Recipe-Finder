@@ -37,3 +37,4 @@
 * Siderbar responsivness - todo
 * create Custom Hooks - todo
 * Implement Code splitting and lazy loading - todo
+* Add a class based component

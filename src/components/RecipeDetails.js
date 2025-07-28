@@ -25,7 +25,6 @@ const RecipeDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log(id);
     getRecipeById();
   }, [id]);
 
@@ -34,7 +33,7 @@ const RecipeDetails = () => {
     try {
       const res = await fetch(`${ONE_RECIPE_API}${id}`);
       const data = await res.json();
-      console.log(data);
+
       setRecipeDetails(data);
       setLoading(false);
     } catch (error) {
@@ -108,7 +107,6 @@ const RecipeDetails = () => {
             <span className="ingredients-label">{INSTRUCTIONS}</span>
             <div className="see-more-data-wrapper">
               {recipeDetails?.instructions?.map((instruction, index) => {
-                console.log(instruction);
                 return (
                   <span className="read-more-element" key={instruction}>
                     {index + 1}. {instruction}

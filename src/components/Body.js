@@ -42,7 +42,6 @@ const Body = () => {
   };
 
   const handleSearchClear = () => {
-    console.log("clear pressed");
     setSortOrder("default");
     setLimit(10);
     setSkip(0);
@@ -75,9 +74,9 @@ const Body = () => {
                 return (
                   <div key={recipe.id} className="recipe-card">
                     {recipe.caloriesPerServing <= 200 ? (
-                      <LabelRecipeCard recipesData={recipe} />
+                      <LabelRecipeCard recipe={recipe} />
                     ) : (
-                      <RecipeCard key={recipe.id} recipesData={recipe} />
+                      <RecipeCard key={recipe.id} recipe={recipe} />
                     )}
                   </div>
                 );
