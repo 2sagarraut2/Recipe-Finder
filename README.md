@@ -36,4 +36,5 @@
 * RecipeCard converted to NavLink
 * Siderbar responsivness - todo
 * create Custom Hooks - useRecipeDetails hook added
+* tab icon added
 * Implement Code splitting and lazy loading - todo
