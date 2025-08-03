@@ -38,3 +38,4 @@
 * create Custom Hooks - useRecipeDetails hook added
 * tab icon added
 * Implement Code splitting and lazy loading - todo
+* Add a class based component

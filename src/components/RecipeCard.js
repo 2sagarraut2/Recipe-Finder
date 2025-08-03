@@ -14,7 +14,7 @@ import { BiSolidDish } from "react-icons/bi";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
 
-const RecipeCard = ({ recipesData }) => {
+const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
 
   const handleMoreButtonClick = (id) => {
@@ -36,7 +36,7 @@ const RecipeCard = ({ recipesData }) => {
     rating,
     servings,
     tags,
-  } = recipesData;
+  } = recipe;
 
   return (
     <>

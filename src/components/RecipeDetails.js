@@ -74,7 +74,6 @@ const RecipeDetails = () => {
               );
             })}
           </div>
-
           <span className="ingredients-label">{INSTRUCTIONS}</span>
           <div className="see-more-data-wrapper">
             {recipeInfo?.instructions?.map((instruction, index) => {
