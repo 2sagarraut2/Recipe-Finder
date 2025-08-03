@@ -314,27 +314,41 @@ body {
   flex-wrap: wrap;
   gap: 24px;
   justify-content: center;
+  margin: 2% 0;
 }
 
 .recipe-card-shimmer {
   width: 250px;
-  height: 470px;
+  height: 390px;
   background: linear-gradient(100deg,
       #f0f0f0 30%,
       #e0e0e0 40%,
       #f0f0f0 60%);
   background-size: 400% 100%;
   animation: shimmer 1.5s infinite linear;
-  display: flex;
   flex-direction: column;
   background-color: #fff;
   border-radius: 16px;
+  width: 100%;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  flex-basis: calc(25% - 16px);
+  /* flex-basis: calc(25% - 16px); */
   /* 4 cards per row with 16px gap */
   box-sizing: border-box;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.3s ease;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  /* box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08); */
+  
+  max-width: 280px; /* Ensures consistent width */
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  flex-grow: 1;
+  text-decoration: none;
 }
 
 @keyframes shimmer {
@@ -576,13 +590,13 @@ body {
 .footer {
   border-top: 1px solid red;
   text-align: center;
+  margin: 20px 0 0 0;
   padding: 20px 0 0 0;
   color: #999;
   /* margin-top: 20px; */
   display: flex;
   justify-content: space-around;
-  width: 100%;
-  margin-left: 3%;
+  margin-left: 1%;
 }
 
 .logo-footer {

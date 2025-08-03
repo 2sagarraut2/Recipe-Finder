@@ -35,6 +35,7 @@
 * Add Error boundaries
 * RecipeCard converted to NavLink
 * Siderbar responsivness - todo
-* create Custom Hooks - todo
+* create Custom Hooks - useRecipeDetails hook added
+* tab icon added
 * Implement Code splitting and lazy loading - todo
 * Add a class based component

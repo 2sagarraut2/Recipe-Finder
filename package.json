@@ -1,7 +1,7 @@
 {
-  "name": "products",
+  "name": "recipes",
   "version": "1.0.0",
-  "description": "This is product gallery",
+  "description": "This is recipe finder app",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",

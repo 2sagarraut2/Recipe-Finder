@@ -16,10 +16,8 @@ import { NavLink } from "react-router-dom";
 
 const RecipeCard = ({ recipe }) => {
   const navigate = useNavigate();
-  const [showReadMore, setShowReadMore] = useState(false);
 
   const handleMoreButtonClick = (id) => {
-    setShowReadMore(!showReadMore);
     navigate(`/recipe/${id}`);
   };
 
@@ -79,16 +77,6 @@ const RecipeCard = ({ recipe }) => {
               {SEE_MORE}
             </button>
           </div> */}
-
-          <div className="read-more-data">
-            {showReadMore && (
-              <RecipeDetails
-                id={id}
-                showReadMore={showReadMore}
-                setShowReadMore={setShowReadMore}
-              />
-            )}
-          </div>
         </div>
       </NavLink>
     </>
