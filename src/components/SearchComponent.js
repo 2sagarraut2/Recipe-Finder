@@ -82,6 +82,49 @@ const SearchComponent = () => {
           )}
         </div>
       )}
+      <div>
+        <label htmlFor="country">Select Country: </label>
+        <select
+          id="country"
+          onChange={(e) => {
+            console.log(e.target.value);
+            const countryValue = e.target.value;
+            if (countryValue === "india") {
+              console.log("Indian citizen: Free entry!");
+            } else if (countryValue === "germany") {
+              console.log("Foreigner: Rs. 200 fees");
+            } else {
+              console.log("Foreigner: Rs. 400 fees");
+            }
+          }}
+        >
+          <option value="india">India</option>
+          <option value="germany">Germany</option>
+          <option value="singapore">Singapore</option>
+        </select>
+      </div>
+      <div>
+        <input
+          type="radio"
+          name="gender"
+          value="male"
+          id="male"
+          onChange={(e) => {
+            console.log(e.target.value);
+          }}
+        />
+        <label htmlFor="male">Male</label>
+        <input
+          type="radio"
+          name="gender"
+          value="female"
+          id="female"
+          onChange={(e) => {
+            console.log(e.target.value);
+          }}
+        />
+        <label htmlFor="female">Female</label>
+      </div>
     </div>
   );
 };

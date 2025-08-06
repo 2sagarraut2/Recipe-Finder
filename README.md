@@ -41,3 +41,5 @@
 * Add a class based component
 * Shimmer components updated and rearranged
 * useOnline custom hook added
+* Code splitting, lazy loading added
+* Select box and radio buttons added
