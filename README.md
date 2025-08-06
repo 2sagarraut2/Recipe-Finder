@@ -39,3 +39,5 @@
 * tab icon added
 * Implement Code splitting and lazy loading - todo
 * Add a class based component
+* Shimmer components updated and rearranged
+* useOnline custom hook added

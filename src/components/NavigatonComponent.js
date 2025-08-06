@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { HiHome, HiSearch, HiUser } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 

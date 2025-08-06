@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom";
-import LogoComponent from "./LogoComponent";
-
 const Footer = () => {
   return (
     <div className="footer">

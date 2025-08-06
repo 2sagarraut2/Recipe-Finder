@@ -13,8 +13,10 @@ const AppLayout = () => {
     <div className="app-layout">
       <Header />
       <div className="main-content">
-        <Outlet />
-        <Footer />
+        <div className="body">
+          <Outlet />
+          <Footer />
+        </div>
       </div>
     </div>
   );

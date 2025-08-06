@@ -1,12 +1,21 @@
-import { INGREDIENTS, INSTRUCTIONS, MINS, PERSONS } from "../utils/constants";
+import {
+  CALORIES,
+  DIFFICULTY,
+  INGREDIENTS,
+  INSTRUCTIONS,
+  MINS,
+  PERSONS,
+  RATINGS,
+  SERVINGS,
+} from "../utils/constants";
 import { useParams } from "react-router";
 import { FaBowlFood, FaStar } from "react-icons/fa6";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { PiChefHatFill } from "react-icons/pi";
 import { BiSolidDish } from "react-icons/bi";
-import Shimmer from "./Shimmer";
 import { useRecipe } from "../context/RecipeContext";
 import useRecipeDetails from "../utils/useRecipeDetails";
+import RecipeDetailsShimmer from "./Shimmer/RecipeDetailsShimmer";
 
 const RecipeDetails = () => {
   const { id } = useParams();
@@ -14,7 +23,7 @@ const RecipeDetails = () => {
 
   const { favorites, addToFavorites, removeFromFavorites } = useRecipe();
 
-  if (recipeInfo === null) return <Shimmer />;
+  if (recipeInfo === null) return <RecipeDetailsShimmer />;
   const isFavorite = favorites.includes(recipeInfo.id);
 
   return (
@@ -45,7 +54,7 @@ const RecipeDetails = () => {
             <h2>{recipeInfo.name}</h2>
             <h3>{recipeInfo.cuisine}</h3>
             <h4>
-              <FaBowlFood className="icon-inline" /> Calories:{" "}
+              <FaBowlFood className="icon-inline" /> {CALORIES}{" "}
               {recipeInfo.caloriesPerServing}
             </h4>
             <h4>
@@ -53,14 +62,14 @@ const RecipeDetails = () => {
               time: {recipeInfo.cookTimeMinutes} {MINS}
             </h4>
             <h4>
-              <PiChefHatFill className="icon-inline" /> Difficulty:{" "}
+              <PiChefHatFill className="icon-inline" /> {DIFFICULTY}{" "}
               {recipeInfo.difficulty}
             </h4>
             <h4>
-              <FaStar className="icon-inline" /> Ratings: {recipeInfo.rating}
+              <FaStar className="icon-inline" /> {RATINGS} {recipeInfo.rating}
             </h4>
             <h4>
-              <BiSolidDish className="icon-inline" /> Servings:{" "}
+              <BiSolidDish className="icon-inline" /> {SERVINGS}{" "}
               {recipeInfo.servings} {PERSONS}
             </h4>
           </div>

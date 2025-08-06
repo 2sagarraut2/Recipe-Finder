@@ -68,7 +68,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20%;
   text-decoration: none;
 }
 
@@ -147,7 +146,7 @@ body {
 .main-content {
   /* margin-left: 4%; */
   padding: 20px;
-  width: calc(100% - 50px);
+  width: calc(110% - 50px);
 }
 
 .body {
@@ -172,16 +171,13 @@ body {
   flex: 1;
   display: flex;
   align-items: center;
-  /* position: relative; */
   gap: 2%;
   display: flex;
   margin-bottom: 2%;
-  margin-left: 5%;
   box-sizing: border-box;
 }
 
 .search-data-wrapper {
-  margin-left: 5%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -314,7 +310,7 @@ body {
   flex-wrap: wrap;
   gap: 24px;
   justify-content: center;
-  margin: 2% 0;
+  margin-bottom: 2%;
 }
 
 .recipe-card-shimmer {
@@ -361,6 +357,16 @@ body {
   }
 }
 
+.shimmer-block {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
 .recipe-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
@@ -389,13 +395,9 @@ body {
 .receipes-data h3,
 .receipes-data h4 {
   white-space: nowrap;
-  /* Prevent line breaks */
   overflow: hidden;
-  /* Hide overflowing text */
   text-overflow: ellipsis;
-  /* Show "..." */
   width: 100%;
-  /* Required for ellipsis to work */
 }
 
 .receipes-data h2 {
@@ -422,25 +424,6 @@ body {
 
 .icon-inline {
   margin-right: 4px;
-}
-
-.see-more-button {
-  margin: 5%;
-  padding: 10px 16px;
-  /* background-color: #ff7043; */
-  background-color: unset;
-  /* color: white; */
-  border: 1px solid #ff7043;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  align-self: flex-start;
-  transition: background-color 0.3s ease;
-  width: 90%;
-}
-
-.see-more-button:hover {
-  background-color: #f4511e;
 }
 
 .read-more-data {
@@ -499,7 +482,7 @@ body {
 .recipe-details-wrapper {
   display: flex;
   justify-content: center;
-  padding: 0 5rem 2rem 5rem;
+  padding: 0 5rem 2rem 3rem;
   background-color: #f9f9f9;
 }
 
@@ -561,11 +544,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-/* .recipe-image-details:hover {
-  transform: scale(1.03);
-} */
-
-/* Optional Responsive */
 @media (max-width: 768px) {
   .recipe-details {
     width: 90%;
@@ -641,4 +619,14 @@ body {
 
 .go-home-btn:hover {
   background-color: #005fcc;
+}
+
+
+
+.online{
+  background-color: green;
+}
+
+.offline{
+  background-color: red;
 }

@@ -1,12 +1,11 @@
-import { useState } from "react";
 import {
-  INGREDIENTS,
-  INSTRUCTIONS,
+  CALORIES,
+  COOKING_TIME,
   MINS,
   PERSONS,
-  SEE_MORE,
+  RATINGS,
+  SERVINGS,
 } from "../utils/constants";
-import RecipeDetails from "./RecipeDetails";
 import { FaBowlFood, FaStar } from "react-icons/fa6";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { PiChefHatFill } from "react-icons/pi";
@@ -14,7 +13,7 @@ import { BiSolidDish } from "react-icons/bi";
 import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = ({ recipesData }) => {
   const navigate = useNavigate();
 
   const handleMoreButtonClick = (id) => {
@@ -28,15 +27,10 @@ const RecipeCard = ({ recipe }) => {
     difficulty,
     id,
     image,
-    ingredients,
-    instructions,
-    mealType,
     name,
-    prepTimeMinutes,
     rating,
     servings,
-    tags,
-  } = recipe;
+  } = recipesData;
 
   return (
     <>
@@ -49,34 +43,24 @@ const RecipeCard = ({ recipe }) => {
             <h2>{name}</h2>
             <h3>{cuisine}</h3>
             <h4>
-              <FaBowlFood className="icon-inline" /> Calories:{" "}
+              <FaBowlFood className="icon-inline" /> {CALORIES}{" "}
               {caloriesPerServing}
             </h4>
             <h4>
-              <MdOutlineAccessTimeFilled className="icon-inline" /> Cooking
-              time: {cookTimeMinutes} {MINS}
+              <MdOutlineAccessTimeFilled className="icon-inline" />{" "}
+              {COOKING_TIME} {cookTimeMinutes} {MINS}
             </h4>
             <h4>
               <PiChefHatFill className="icon-inline" /> Difficulty: {difficulty}
             </h4>
             <h4>
-              <FaStar className="icon-inline" /> Ratings: {rating}
+              <FaStar className="icon-inline" /> {RATINGS} {rating}
             </h4>
             <h4>
-              <BiSolidDish className="icon-inline" /> Servings: {servings}{" "}
+              <BiSolidDish className="icon-inline" /> {SERVINGS} {servings}{" "}
               {PERSONS}
             </h4>
           </div>
-          {/* <div>
-            <button
-              className="see-more-button"
-              onClick={() => {
-                handleMoreButtonClick(id);
-              }}
-            >
-              {SEE_MORE}
-            </button>
-          </div> */}
         </div>
       </NavLink>
     </>

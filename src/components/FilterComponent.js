@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const FilterComponent = ({ onSortChange, sortOrder, setSortOrder }) => {
   const handleChange = (e) => {
     setSortOrder(e.target.value);
