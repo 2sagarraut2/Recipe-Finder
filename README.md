@@ -43,3 +43,5 @@
 * useOnline custom hook added
 * Code splitting, lazy loading added
 * Select box and radio buttons added
+* Tailwind CSS added
+* Controlled component added

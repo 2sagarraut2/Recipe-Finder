@@ -16,15 +16,26 @@ import { BiSolidDish } from "react-icons/bi";
 import { useRecipe } from "../context/RecipeContext";
 import useRecipeDetails from "../utils/useRecipeDetails";
 import RecipeDetailsShimmer from "./Shimmer/RecipeDetailsShimmer";
+import { useState } from "react";
+import Dropdown from "./Dropdown";
 
 const RecipeDetails = () => {
   const { id } = useParams();
   const recipeInfo = useRecipeDetails(id);
+  const [show, setShow] = useState(false);
 
   const { favorites, addToFavorites, removeFromFavorites } = useRecipe();
 
   if (recipeInfo === null) return <RecipeDetailsShimmer />;
   const isFavorite = favorites?.includes(recipeInfo?.id);
+
+  const handleDropdownClick = () => {
+    setShow(!show);
+  };
+
+  const myData = {
+    value: "Sagar",
+  };
 
   return (
     <>
@@ -93,6 +104,22 @@ const RecipeDetails = () => {
               );
             })}
           </div>
+
+          <Dropdown
+            label={INGREDIENTS}
+            data={recipeInfo?.ingredients}
+            show={show}
+            handleDropdownClick={handleDropdownClick}
+            myData={myData}
+          />
+
+          <Dropdown
+            label={INSTRUCTIONS}
+            data={recipeInfo?.instructions}
+            show={show}
+            handleDropdownClick={handleDropdownClick}
+            myData={myData}
+          />
         </div>
       </div>
     </>

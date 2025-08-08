@@ -1,6 +1,8 @@
 /* Import a clean modern font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+@import "tailwindcss";
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -27,7 +29,7 @@ body {
 
 /* Header */
 /* Sidebar Header Layout */
-.header {
+/* .header {
   position: fixed;
   top: 0;
   left: 0;
@@ -39,11 +41,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 0;
+  padding: tb-20px lr-0;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
   z-index: 1000;
   transition: all 0.3s ease;
-}
+} */
 
 /* Responsive adjustments for very small screens */
 @media screen and (max-width: 768px) {

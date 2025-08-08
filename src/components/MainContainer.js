@@ -6,7 +6,7 @@ import RecipeDetails from "./RecipeDetails";
 // import SearchComponent from "./SearchComponent";
 import { RecipeProvider } from "../context/RecipeContext";
 import Error from "./Error";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 
 const LazyComponent = lazy(() => import("./SearchComponent"));
 
@@ -48,7 +48,7 @@ const appRouter = createBrowserRouter([
 const MainContainer = () => {
   return (
     <RecipeProvider>
-      <div className="main-container">
+      <div className="pt-[10px]">
         <RouterProvider router={appRouter} />
       </div>
     </RecipeProvider>
