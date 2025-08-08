@@ -24,7 +24,7 @@ const RecipeDetails = () => {
   const { favorites, addToFavorites, removeFromFavorites } = useRecipe();
 
   if (recipeInfo === null) return <RecipeDetailsShimmer />;
-  const isFavorite = favorites.includes(recipeInfo.id);
+  const isFavorite = favorites?.includes(recipeInfo?.id);
 
   return (
     <>
@@ -33,8 +33,8 @@ const RecipeDetails = () => {
           <div className="recipe-image-wrapper">
             <img
               className="recipe-image-details"
-              src={recipeInfo.image}
-              alt={recipeInfo.name}
+              src={recipeInfo?.image}
+              alt={recipeInfo?.name}
               loading="lazy"
             />
             <div>
@@ -42,8 +42,8 @@ const RecipeDetails = () => {
                 className={`favorite-button ${isFavorite ? "favorited" : ""}`}
                 onClick={() =>
                   isFavorite
-                    ? removeFromFavorites(recipeInfo.id)
-                    : addToFavorites(recipeInfo.id)
+                    ? removeFromFavorites(recipeInfo?.id)
+                    : addToFavorites(recipeInfo?.id)
                 }
               >
                 {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
@@ -51,26 +51,26 @@ const RecipeDetails = () => {
             </div>
           </div>
           <div className="receipes-data">
-            <h2>{recipeInfo.name}</h2>
-            <h3>{recipeInfo.cuisine}</h3>
+            <h2>{recipeInfo?.name}</h2>
+            <h3>{recipeInfo?.cuisine}</h3>
             <h4>
               <FaBowlFood className="icon-inline" /> {CALORIES}{" "}
-              {recipeInfo.caloriesPerServing}
+              {recipeInfo?.caloriesPerServing}
             </h4>
             <h4>
               <MdOutlineAccessTimeFilled className="icon-inline" /> Cooking
-              time: {recipeInfo.cookTimeMinutes} {MINS}
+              time: {recipeInfo?.cookTimeMinutes} {MINS}
             </h4>
             <h4>
               <PiChefHatFill className="icon-inline" /> {DIFFICULTY}{" "}
-              {recipeInfo.difficulty}
+              {recipeInfo?.difficulty}
             </h4>
             <h4>
-              <FaStar className="icon-inline" /> {RATINGS} {recipeInfo.rating}
+              <FaStar className="icon-inline" /> {RATINGS} {recipeInfo?.rating}
             </h4>
             <h4>
               <BiSolidDish className="icon-inline" /> {SERVINGS}{" "}
-              {recipeInfo.servings} {PERSONS}
+              {recipeInfo?.servings} {PERSONS}
             </h4>
           </div>
           <span className="ingredients-label">{INGREDIENTS}</span>

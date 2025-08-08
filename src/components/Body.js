@@ -15,8 +15,8 @@ const Body = () => {
 
   useEffect(() => {
     if (originalRecipesData) {
-      setRecipesData(originalRecipesData.recipes);
-      setTotal(originalRecipesData.total);
+      setRecipesData(originalRecipesData?.recipes);
+      setTotal(originalRecipesData?.total);
     }
   }, [originalRecipesData]);
 
@@ -30,11 +30,11 @@ const Body = () => {
         <div className="recipes-wrapper">
           {recipesData.map((recipe) => {
             return (
-              <div key={recipe.id} className="recipe-card">
+              <div key={recipe?.id} className="recipe-card">
                 {recipe.caloriesPerServing <= 200 ? (
                   <LabelRecipeCard recipesData={recipe} />
                 ) : (
-                  <RecipeCard key={recipe.id} recipesData={recipe} />
+                  <RecipeCard key={recipe?.id} recipesData={recipe} />
                 )}
               </div>
             );
