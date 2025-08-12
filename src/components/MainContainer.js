@@ -9,7 +9,7 @@ import Error from "./Error";
 import { lazy, Suspense, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 
-const LazyComponent = lazy(() => import("./SearchComponent"));
+const LazySearchComponent = lazy(() => import("./SearchComponent"));
 
 // Layout with Header and Footer shown on every page
 const AppLayout = () => {
@@ -31,7 +31,7 @@ const AppLayout = () => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />, // Header + Footer layout
+    element: <AppLayout />,
     children: [
       { path: "/", element: <Body /> },
       { path: "/recipe/:id", element: <RecipeDetails /> },
@@ -39,7 +39,7 @@ const appRouter = createBrowserRouter([
         path: "/search",
         element: (
           <Suspense fallback={<h3>Loading...</h3>}>
-            <LazyComponent />
+            <LazySearchComponent />
           </Suspense>
         ),
       },

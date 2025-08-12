@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { HiHome, HiSearch, HiUser } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import UserContext from "../context/UserContext";
+import { FcLike } from "react-icons/fc";
+import { FaHeart } from "react-icons/fa6";
 
 const NavigatonComponent = ({ setIsOpen, isOpen }) => {
   const menuObject = [
@@ -22,6 +24,12 @@ const NavigatonComponent = ({ setIsOpen, isOpen }) => {
       label: "Login",
       path: "/login",
       icon: <HiUser fontSize={20} />,
+    },
+    {
+      id: 4,
+      label: "Favourites",
+      path: "/favourites",
+      icon: <FaHeart fontSize={20} />,
     },
   ];
 
