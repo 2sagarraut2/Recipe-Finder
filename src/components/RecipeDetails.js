@@ -16,41 +16,45 @@ import { BiSolidDish } from "react-icons/bi";
 import { useRecipe } from "../context/RecipeContext";
 import useRecipeDetails from "../utils/useRecipeDetails";
 import RecipeDetailsShimmer from "./Shimmer/RecipeDetailsShimmer";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Dropdown from "./Dropdown";
+import UserContext from "../context/UserContext";
 
 const RecipeDetails = () => {
   const { id } = useParams();
   const recipeInfo = useRecipeDetails(id);
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(null);
+  const { loggedInUser } = useContext(UserContext);
 
   const { favorites, addToFavorites, removeFromFavorites } = useRecipe();
 
   if (recipeInfo === null) return <RecipeDetailsShimmer />;
   const isFavorite = favorites?.includes(recipeInfo?.id);
 
-  const handleDropdownClick = () => {
-    setShow(!show);
-  };
-
   const myData = {
     value: "Sagar",
   };
 
+  const handleDropdownClick = (label) => {
+    setShow((prev) => (prev === label ? null : label));
+  };
+
   return (
     <>
-      <div className="recipe-details-wrapper">
-        <div className="recipe-details">
-          <div className="recipe-image-wrapper">
+      <div className="flex justify-center px-20 pb-8 pl-12 bg-[#f9f9f9] relative">
+        <div className="flex flex-col w-full justify-center pr-20 pb-8 pl-12 bg-[#f9f9f9] shadow-[0_6px_16px_rgba(0,0,0,0.15)] p-4 rounded-2xl">
+          <div className="flex justify-center mb-6">
             <img
-              className="recipe-image-details"
+              className="w-full max-w-[400px] rounded-[12px] object-cover transition-transform duration-300 ease-in-out"
               src={recipeInfo?.image}
               alt={recipeInfo?.name}
               loading="lazy"
             />
             <div>
               <button
-                className={`favorite-button ${isFavorite ? "favorited" : ""}`}
+                className={`absolute border-2 border-[#ffcc00] text-[#ffcc00] text-base px-4 py-2 rounded-[20px] cursor-pointer transition-all duration-300 ease-in-out font-bold bg-[#fff8e1] ${
+                  isFavorite ? "bg-[#ffcc00] border-[#ffcc00]" : ""
+                }`}
                 onClick={() =>
                   isFavorite
                     ? removeFromFavorites(recipeInfo?.id)
@@ -61,64 +65,45 @@ const RecipeDetails = () => {
               </button>
             </div>
           </div>
-          <div className="receipes-data">
+          <div className="p-4 flex flex-col">
             <h2>{recipeInfo?.name}</h2>
             <h3>{recipeInfo?.cuisine}</h3>
-            <h4>
-              <FaBowlFood className="icon-inline" /> {CALORIES}{" "}
+            <h4 className="flex">
+              <FaBowlFood className="mr-1" /> {CALORIES}{" "}
               {recipeInfo?.caloriesPerServing}
             </h4>
-            <h4>
-              <MdOutlineAccessTimeFilled className="icon-inline" /> Cooking
-              time: {recipeInfo?.cookTimeMinutes} {MINS}
+            <h4 className="flex">
+              <MdOutlineAccessTimeFilled className="mr-1" /> Cooking time:{" "}
+              {recipeInfo?.cookTimeMinutes} {MINS}
             </h4>
-            <h4>
-              <PiChefHatFill className="icon-inline" /> {DIFFICULTY}{" "}
+            <h4 className="flex">
+              <PiChefHatFill className="mr-1" /> {DIFFICULTY}{" "}
               {recipeInfo?.difficulty}
             </h4>
-            <h4>
-              <FaStar className="icon-inline" /> {RATINGS} {recipeInfo?.rating}
+            <h4 className="flex">
+              <FaStar className="mr-1" /> {RATINGS} {recipeInfo?.rating}
             </h4>
-            <h4>
-              <BiSolidDish className="icon-inline" /> {SERVINGS}{" "}
-              {recipeInfo?.servings} {PERSONS}
+            <h4 className="flex">
+              <BiSolidDish className="mr-1" /> {SERVINGS} {recipeInfo?.servings}{" "}
+              {PERSONS}
             </h4>
-          </div>
-          <span className="ingredients-label">{INGREDIENTS}</span>
-          <div className="see-more-data-wrapper">
-            {recipeInfo?.ingredients?.map((ingredient) => {
-              return (
-                <span className="read-more-element" key={ingredient}>
-                  {ingredient}
-                </span>
-              );
-            })}
-          </div>
-          <span className="ingredients-label">{INSTRUCTIONS}</span>
-          <div className="see-more-data-wrapper">
-            {recipeInfo?.instructions?.map((instruction, index) => {
-              return (
-                <span className="read-more-element" key={instruction}>
-                  {index + 1}. {instruction}
-                </span>
-              );
-            })}
           </div>
 
           <Dropdown
             label={INGREDIENTS}
             data={recipeInfo?.ingredients}
-            show={show}
-            handleDropdownClick={handleDropdownClick}
+            show={show === "INGREDIENTS"}
+            setShow={setShow}
             myData={myData}
+            handleDropdownClick={() => handleDropdownClick("INGREDIENTS")}
           />
 
           <Dropdown
             label={INSTRUCTIONS}
             data={recipeInfo?.instructions}
-            show={show}
-            handleDropdownClick={handleDropdownClick}
+            show={show === "INSTRUCTIONS"}
             myData={myData}
+            handleDropdownClick={() => handleDropdownClick("INSTRUCTIONS")}
           />
         </div>
       </div>

@@ -1,28 +1,49 @@
+import { useState } from "react";
 import { TITLE } from "../utils/constants";
-import useOnlineStatus from "../utils/useOnlineStatus";
 import LogoComponent from "./LogoComponent";
 import NavigatonComponent from "./NavigatonComponent";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const onlineStatus = useOnlineStatus();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed top-0 left-0 w-[220px] min-w-[200px] h-[100vh] bg-[#f9f9f9] border-[1px] border-solid border-[#ddd] flex flex-col items-center pt-[20px] pb-[20px] pl-0 pr-0 shadow-2xs z-[1000] transition-all ease-[0.3s]">
-      <Link to="/" className="no-underline">
-        <div className="logo-container">
-          <LogoComponent />
-          <h3 className="title-wrapper no-underline">{TITLE}</h3>
+    <>
+      {/* Mobile Hamburger */}
+      <button
+        className="md:hidden fixed top-4 left-4 p-2 bg-indigo-600 text-white z-[1100] rounded"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        ☰
+      </button>
+
+      {/* Overlay for mobile */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-40 z-[900] md:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+        ></div>
+      )}
+
+      {/* Sidebar */}
+      <div
+        className={`fixed top-0 left-0 w-[220px] min-w-[200px] h-screen bg-[#f9f9f9] border border-[#ddd] flex flex-col items-center pt-5 pb-5 shadow-md z-[1000] transition-transform duration-300 ease-in-out 
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
+      >
+        <Link to="/" className="no-underline mb-6">
+          <div className="flex flex-col items-center">
+            <LogoComponent />
+            <h3 className="text-lg font-bold text-[#333] mt-2">{TITLE}</h3>
+          </div>
+        </Link>
+
+        <div className="w-full px-2">
+          <NavigatonComponent setIsOpen={setIsOpen} isOpen={isOpen} />
         </div>
-      </Link>
-      <div className="navigation-container">
-        <NavigatonComponent />
-        <h3 className={onlineStatus ? "online" : "offline"}>
-          {onlineStatus ? "Online ✅" : "Offline 🔴"}
-        </h3>
+
+        <div className="mt-auto text-sm">Made with ❤️ in India</div>
       </div>
-      <div className="header-bottom-text">Made with ❤️ in India</div>
-    </div>
+    </>
   );
 };
 

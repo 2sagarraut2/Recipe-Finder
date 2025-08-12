@@ -6,17 +6,20 @@ import RecipeDetails from "./RecipeDetails";
 // import SearchComponent from "./SearchComponent";
 import { RecipeProvider } from "../context/RecipeContext";
 import Error from "./Error";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
+import UserContext from "../context/UserContext";
 
 const LazyComponent = lazy(() => import("./SearchComponent"));
 
 // Layout with Header and Footer shown on every page
 const AppLayout = () => {
   return (
-    <div className="app-layout">
-      <Header />
-      <div className="main-content">
-        <div className="body">
+    <div className="flex min-h-screen">
+      <UserContext.Provider value={{ loggedInUser: "Abhishek" }}>
+        <Header />
+      </UserContext.Provider>
+      <div className="p-5 w-[calc(110%-50px)]">
+        <div className="pt-[2%] ml-[15%]">
           <Outlet />
           <Footer />
         </div>
@@ -46,12 +49,15 @@ const appRouter = createBrowserRouter([
 ]);
 
 const MainContainer = () => {
+  const [username, setUserName] = useState("Sagar");
   return (
-    <RecipeProvider>
-      <div className="pt-[10px]">
-        <RouterProvider router={appRouter} />
-      </div>
-    </RecipeProvider>
+    <UserContext.Provider value={{ loggedInUser: username }}>
+      <RecipeProvider>
+        <div className="pt-[10px]">
+          <RouterProvider router={appRouter} />
+        </div>
+      </RecipeProvider>
+    </UserContext.Provider>
   );
 };
 

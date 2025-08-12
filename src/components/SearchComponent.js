@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 import Shimmer from "./Shimmer/ShimmerBlock";
 import { useSearchParams } from "react-router-dom";
 import { READY_FLAVOUR, SEARCH_RECIPE_API } from "../utils/constants";
+import UserContext from "../context/UserContext";
 
 const SearchComponent = () => {
   const [total, setTotal] = useState(0);
@@ -40,13 +41,15 @@ const SearchComponent = () => {
     }
   }, []);
 
+  const { loggedInUser } = useContext(UserContext);
+
   return (
-    <div className="search-wrapper-wrapper">
-      <div className="search-wrapper">
+    <div className="">
+      <div className="flex-1 flex items-center gap-[2%] mb-[2%] box-border">
         <input
           id="search"
           type="text"
-          className="search-box"
+          className="w-full px-4 py-[10px] border border-gray-300 rounded-xl text-base outline-none transition-colors duration-200 ease-in-out focus:border-indigo-600 focus:ring-4 focus:ring-indigo-500/20"
           placeholder="search for recipe..."
           value={searchText}
           onChange={(e) => {
@@ -54,22 +57,49 @@ const SearchComponent = () => {
             setSearchParams({ q: e.target.value });
           }}
         />
-        <button className="search-button" onClick={handleRecipeSearch}>
+        <button
+          className="px-5 py-2.5 text-base
+    bg-indigo-600 text-white
+    rounded-xl border-none
+    cursor-pointer
+    shadow-md
+    transition 
+    duration-200 ease-in-out
+    hover:bg-indigo-700 hover:-translate-y-0.5
+    active:bg-indigo-800 active:translate-y-0
+    focus:outline-none focus:ring-4 focus:ring-indigo-500/40"
+          onClick={handleRecipeSearch}
+        >
           Search
         </button>
-        <button className="search-button" onClick={handleClearClicked}>
+        <button
+          className="px-5 py-2.5 text-base
+    bg-indigo-600 text-white
+    rounded-xl border-none
+    cursor-pointer
+    shadow-md
+    transition 
+    duration-200 ease-in-out
+    hover:bg-indigo-700 hover:-translate-y-0.5
+    active:bg-indigo-800 active:translate-y-0
+    focus:outline-none focus:ring-4 focus:ring-indigo-500/40"
+          onClick={handleClearClicked}
+        >
           Clear
         </button>
       </div>
       {loading ? (
         <Shimmer />
       ) : (
-        <div className="search-data-wrapper">
+        <div className="flex flex-wrap">
           {searchText ? (
-            <div className="recipes-wrapper">
+            <div className="flex flex-wrap gap-6 justify-center mb-2">
               {recipesData.map((recipe) => {
                 return (
-                  <div key={recipe.id} className="recipe-card">
+                  <div
+                    key={recipe.id}
+                    className="relative flex flex-col rounded-[16px] w-full max-w-[280px] box-border overflow-hidden flex-grow transition-transform duration-200 ease-linear hover:-translate-y-1.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
+                  >
                     <RecipeCard key={recipe.id} recipe={recipe} />
                   </div>
                 );
@@ -85,6 +115,7 @@ const SearchComponent = () => {
       <div>
         <label htmlFor="country">Select Country: </label>
         <select
+          className="border-1 rounded-sm"
           id="country"
           onChange={(e) => {
             console.log(e.target.value);
@@ -125,6 +156,7 @@ const SearchComponent = () => {
         />
         <label htmlFor="female">Female</label>
       </div>
+      <h3>{loggedInUser}</h3>
     </div>
   );
 };

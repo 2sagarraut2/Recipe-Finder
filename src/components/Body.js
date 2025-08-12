@@ -27,10 +27,13 @@ const Body = () => {
   return (
     <div>
       <>
-        <div className="recipes-wrapper">
+        <div className="flex flex-wrap gap-6 justify-center mb-[2%] ">
           {recipesData.map((recipe) => {
             return (
-              <div key={recipe?.id} className="recipe-card">
+              <div
+                key={recipe?.id}
+                className="relative flex flex-col rounded-2xl w-12/12 max-w-[280px] box-border overflow-hidden transition-transform duration-200 ease-in-out grow no-underline hover:-translate-y-[6px] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
+              >
                 {recipe.caloriesPerServing <= 200 ? (
                   <LabelRecipeCard recipesData={recipe} />
                 ) : (
