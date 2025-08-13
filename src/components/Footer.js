@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import UserContext from "../context/UserContext";
-
 const Footer = () => {
   return (
     <div className="border-t border-red-500 text-center mt-5 pt-5 text-[#999] flex justify-around ml-[1%]">

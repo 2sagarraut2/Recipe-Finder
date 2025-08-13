@@ -1,7 +1,5 @@
-import { useContext } from "react";
 import { HiHome, HiSearch, HiUser } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
-import UserContext from "../context/UserContext";
 import { FcLike } from "react-icons/fc";
 import { FaHeart } from "react-icons/fa6";
 

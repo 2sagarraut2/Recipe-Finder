@@ -18,13 +18,11 @@ import useRecipeDetails from "../utils/useRecipeDetails";
 import RecipeDetailsShimmer from "./Shimmer/RecipeDetailsShimmer";
 import { useContext, useState } from "react";
 import Dropdown from "./Dropdown";
-import UserContext from "../context/UserContext";
 
 const RecipeDetails = () => {
   const { id } = useParams();
   const recipeInfo = useRecipeDetails(id);
   const [show, setShow] = useState(null);
-  const { loggedInUser } = useContext(UserContext);
 
   const { favorites, addToFavorites, removeFromFavorites } = useRecipe();
 

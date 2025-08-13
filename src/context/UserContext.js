@@ -1,7 +1,20 @@
-import { createContext } from "react";
+import { createContext, useContext, useState } from "react";
 
-const UserContext = createContext({
-  loggedInUser: "default user",
-});
+const UserContext = createContext();
 
-export default UserContext;
+export const UserProvider = ({ children }) => {
+  const [userName, setUserName] = useState("defaut user");
+
+  const updateUserName = (user) => {
+    setUserName(user);
+  };
+
+  return (
+    <UserContext.Provider value={{ userName, updateUserName }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+// custom hook
+export const useUserName = () => useContext(UserContext);

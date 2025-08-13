@@ -46,3 +46,4 @@
 * Tailwind CSS added
 * Controlled component added
 * User context created
+* Recipe context added

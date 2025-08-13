@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { TITLE } from "../utils/constants";
 import LogoComponent from "./LogoComponent";
 import NavigatonComponent from "./NavigatonComponent";
