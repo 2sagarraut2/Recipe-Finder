@@ -4,6 +4,8 @@ import Shimmer from "./Shimmer/ShimmerBlock";
 import { useSearchParams } from "react-router-dom";
 import { READY_FLAVOUR, SEARCH_RECIPE_API } from "../utils/constants";
 import { useUserName } from "../context/UserContext";
+import RecipeCardHOC from "./RecipeCardHOC";
+import CommonButton from "./CommonButton";
 
 const SearchComponent = () => {
   const [total, setTotal] = useState(0);
@@ -43,6 +45,8 @@ const SearchComponent = () => {
 
   const { userName, updateUserName } = useUserName();
 
+  const LabelRecipeCard = RecipeCardHOC(RecipeCard);
+
   return (
     <div className="px-8 md:flex md:flex-col">
       <div className="flex items-center gap-[2%] mb-[2%] box-border flex-col sm:flex-row">
@@ -58,18 +62,14 @@ const SearchComponent = () => {
             updateUserName(e.target.value);
           }}
         />
-        <button
-          className="px-5 py-2.5 text-base bg-indigo-600 text-white rounded-xl border-none cursor-pointer shadow-md transition  duration-200 ease-in-out hover:bg-indigo-700 hover:-translate-y-0.5 active:bg-indigo-800 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-indigo-500/40 my-2"
-          onClick={handleRecipeSearch}
-        >
-          Search
-        </button>
-        <button
-          className="px-5 py-2.5 text-base bg-indigo-600 text-white rounded-xl border-none cursor-pointer shadow-md transition  duration-200 ease-in-out hover:bg-indigo-700 hover:-translate-y-0.5 active:bg-indigo-800 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-indigo-500/40 my-2"
-          onClick={handleClearClicked}
-        >
-          Clear
-        </button>
+        <CommonButton
+          label={"Search"}
+          handleButtonClicked={handleRecipeSearch}
+        />
+        <CommonButton
+          label={"Clear"}
+          handleButtonClicked={handleClearClicked}
+        />
       </div>
       <div className="mb-[2%]">
         {loading ? (
@@ -84,7 +84,11 @@ const SearchComponent = () => {
                       key={recipe.id}
                       className="relative flex flex-col rounded-[16px] w-full max-w-[280px] box-border overflow-hidden flex-grow transition-transform duration-200 ease-linear hover:-translate-y-1.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
                     >
-                      <RecipeCard key={recipe.id} recipe={recipe} />
+                      {recipe.caloriesPerServing <= 200 ? (
+                        <LabelRecipeCard recipesData={recipe} />
+                      ) : (
+                        <RecipeCard key={recipe?.id} recipesData={recipe} />
+                      )}
                     </div>
                   );
                 })}

@@ -18,7 +18,10 @@ const Error = () => {
         <br />
         {error?.statusText || MOVED_DELETED}
       </p>
-      <button className="go-home-btn" onClick={() => navigate("/")}>
+      <button
+        className="bg-[#0077ff] text-white py-3 px-6 text-[1rem] border-none rounded-xl cursor-pointer transition-colors duration-200 ease-in-out hover:bg-[#005fcc] "
+        onClick={() => navigate("/")}
+      >
         {GOTO_HOME}
       </button>
     </div>

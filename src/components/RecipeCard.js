@@ -1,6 +1,7 @@
 import {
   CALORIES,
   COOKING_TIME,
+  DIFFICULTY,
   MINS,
   PERSONS,
   RATINGS,
@@ -54,7 +55,7 @@ const RecipeCard = ({ recipesData }) => {
             </li>
             <li className="flex items-center truncate">
               <PiChefHatFill className="mr-1" />
-              Difficulty: {difficulty}
+              {DIFFICULTY} {difficulty}
             </li>
             <li className="flex items-center truncate">
               <FaStar className="mr-1" />

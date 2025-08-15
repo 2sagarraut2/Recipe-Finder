@@ -3,9 +3,12 @@ import { TITLE } from "../utils/constants";
 import LogoComponent from "./LogoComponent";
 import NavigatonComponent from "./NavigatonComponent";
 import { Link } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { theme, updateTheme } = useTheme();
 
   return (
     <>
@@ -28,7 +31,9 @@ const Header = () => {
       {/* Sidebar */}
       <div
         className={`fixed top-0 left-0 w-[220px] min-w-[200px] h-screen bg-[#f9f9f9] border border-[#ddd] flex flex-col items-center pt-5 pb-5 shadow-md z-[1000] transition-transform duration-300 ease-in-out 
-        ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0`}
+        ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 ${
+          theme === "dark" ? "bg-black" : "bg-white"
+        }`}
       >
         <Link to="/" className="no-underline mb-6">
           <div className="flex flex-col items-center">
@@ -41,7 +46,19 @@ const Header = () => {
           <NavigatonComponent setIsOpen={setIsOpen} isOpen={isOpen} />
         </div>
 
-        <div className="mt-auto text-sm">Made with ❤️ in India</div>
+        <button
+          onClick={updateTheme}
+          className="bg-green-500 p-2 rounded-xl cursor-pointer"
+        >
+          Change Theme
+        </button>
+        <div
+          className={`mt-auto text-sm ${
+            theme === "dark" ? "text-white" : "text-black"
+          }`}
+        >
+          Made with ❤️ in India
+        </div>
       </div>
     </>
   );

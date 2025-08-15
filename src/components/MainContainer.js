@@ -7,6 +7,7 @@ import { RecipeProvider } from "../context/RecipeContext";
 import Error from "./Error";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { UserProvider } from "../context/UserContext";
+import { ThemeProvider } from "../context/ThemeContext";
 
 const LazySearchComponent = lazy(() => import("./SearchComponent"));
 const LazyFavouriteComponent = lazy(() => import("./Favourites"));
@@ -55,13 +56,15 @@ const appRouter = createBrowserRouter([
 
 const MainContainer = () => {
   return (
-    <RecipeProvider>
-      <UserProvider>
-        <div className="pt-[10px]">
-          <RouterProvider router={appRouter} />
-        </div>
-      </UserProvider>
-    </RecipeProvider>
+    <ThemeProvider>
+      <RecipeProvider>
+        <UserProvider>
+          <div className="pt-[10px]">
+            <RouterProvider router={appRouter} />
+          </div>
+        </UserProvider>
+      </RecipeProvider>
+    </ThemeProvider>
   );
 };
 

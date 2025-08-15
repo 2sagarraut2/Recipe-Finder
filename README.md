@@ -47,3 +47,5 @@
 * Controlled component added
 * User context created
 * Recipe context added
+* Button component reused
+* Theme context added
