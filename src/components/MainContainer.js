@@ -8,6 +8,8 @@ import Error from "./Error";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { UserProvider } from "../context/UserContext";
 import { ThemeProvider } from "../context/ThemeContext";
+import { Provider } from "react-redux";
+import appStore from "../utils/redux/appStore";
 
 const LazySearchComponent = lazy(() => import("./SearchComponent"));
 const LazyFavouriteComponent = lazy(() => import("./Favourites"));
@@ -56,15 +58,17 @@ const appRouter = createBrowserRouter([
 
 const MainContainer = () => {
   return (
-    <ThemeProvider>
-      <RecipeProvider>
-        <UserProvider>
-          <div className="pt-[10px]">
-            <RouterProvider router={appRouter} />
-          </div>
-        </UserProvider>
-      </RecipeProvider>
-    </ThemeProvider>
+    <Provider store={appStore}>
+      <ThemeProvider>
+        <RecipeProvider>
+          <UserProvider>
+            <div className="pt-[10px]">
+              <RouterProvider router={appRouter} />
+            </div>
+          </UserProvider>
+        </RecipeProvider>
+      </ThemeProvider>
+    </Provider>
   );
 };
 

@@ -7,7 +7,7 @@ const RecipeContext = createContext();
 export const RecipeProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
-  console.log("favorites ", favorites);
+  // console.log("favorites ", favorites);
 
   const addToFavorites = (recipe) => {
     console.log("addToFavorites");

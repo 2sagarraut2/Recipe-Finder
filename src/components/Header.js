@@ -23,7 +23,7 @@ const Header = () => {
       {/* Overlay for mobile */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-[900] md:hidden"
+          className="fixed inset-0 bg-opacity-40 z-[900] md:hidden"
           onClick={() => setIsOpen(!isOpen)}
         ></div>
       )}
@@ -38,7 +38,13 @@ const Header = () => {
         <Link to="/" className="no-underline mb-6">
           <div className="flex flex-col items-center">
             <LogoComponent />
-            <h3 className="text-lg font-bold text-[#333] mt-2">{TITLE}</h3>
+            <h3
+              className={`text-lg font-bold text-[#333] mt-2 ${
+                theme === "dark" ? "text-white" : "text-black"
+              }`}
+            >
+              {TITLE}
+            </h3>
           </div>
         </Link>
 
@@ -46,12 +52,16 @@ const Header = () => {
           <NavigatonComponent setIsOpen={setIsOpen} isOpen={isOpen} />
         </div>
 
-        <button
-          onClick={updateTheme}
-          className="bg-green-500 p-2 rounded-xl cursor-pointer"
-        >
-          Change Theme
-        </button>
+        <div className="">
+          <button
+            onClick={updateTheme}
+            className={`p-2 rounded-xl cursor-pointer ${
+              theme === "dark" ? "hover:bg-white" : "hover:bg-black"
+            }`}
+          >
+            {theme === "dark" ? "🌞" : "🌙"}
+          </button>
+        </div>
         <div
           className={`mt-auto text-sm ${
             theme === "dark" ? "text-white" : "text-black"

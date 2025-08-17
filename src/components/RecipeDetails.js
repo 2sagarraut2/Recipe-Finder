@@ -13,24 +13,38 @@ import { FaBowlFood, FaStar } from "react-icons/fa6";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { PiChefHatFill } from "react-icons/pi";
 import { BiSolidDish } from "react-icons/bi";
-import { useRecipe } from "../context/RecipeContext";
 import useRecipeDetails from "../utils/useRecipeDetails";
 import RecipeDetailsShimmer from "./Shimmer/RecipeDetailsShimmer";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Dropdown from "./Dropdown";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToFavourites,
+  removeFromFavourites,
+} from "../utils/redux/favouriteSlice";
 
 const RecipeDetails = () => {
   const { id } = useParams();
   const recipeInfo = useRecipeDetails(id);
   const [show, setShow] = useState(null);
 
-  const { favorites, addToFavorites, removeFromFavorites } = useRecipe();
+  // const { favorites, addToFavorites, removeFromFavorites } = useRecipe();
+  const dispatch = useDispatch(addToFavourites);
+  const favourites = useSelector((store) => store.favourite.items);
 
   if (recipeInfo === null) return <RecipeDetailsShimmer />;
-  const isFavorite = favorites?.includes(recipeInfo?.id);
+  const isFavorite = favourites?.some((item) => item.id === recipeInfo?.id);
 
   const handleDropdownClick = (label) => {
     setShow((prev) => (prev === label ? null : label));
+  };
+
+  const handleAddToFavouriteClick = (recipeInfo) => {
+    dispatch(addToFavourites(recipeInfo));
+  };
+
+  const handleRemoveFromFavouriteClick = (recipeInfo) => {
+    dispatch(removeFromFavourites(recipeInfo));
   };
 
   return (
@@ -46,18 +60,20 @@ const RecipeDetails = () => {
           <figcaption className="sr-only">{recipeInfo?.name}</figcaption>
           <button
             className={`absolute border-2 text-base px-4 py-2 rounded-[20px] cursor-pointer transition-all duration-300 ease-in-out font-bold top-4 right-4 
-    ${
-      isFavorite
-        ? "bg-[#ffcc00] border-[#ffcc00] text-white"
-        : "bg-[#fff8e1] border-[#ffcc00] text-[#ffcc00]"
-    } hover:scale-105 active:scale-95 shadow-md`}
+              ${
+                isFavorite
+                  ? "bg-[#ffcc00] border-[#ffcc00] text-white"
+                  : "bg-[#fff8e1] border-[#ffcc00] text-[#ffcc00]"
+              }
+    hover:scale-105 active:scale-95 shadow-md`}
             onClick={() => {
               if (isFavorite) {
-                removeFromFavorites(recipeInfo?.id);
+                handleRemoveFromFavouriteClick(recipeInfo);
               } else {
-                addToFavorites(recipeInfo?.id);
+                handleAddToFavouriteClick(recipeInfo);
               }
             }}
+            // onClick={() => handleAddToFavouriteClick(recipeInfo)}
           >
             {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
           </button>

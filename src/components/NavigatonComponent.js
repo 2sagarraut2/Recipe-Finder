@@ -2,8 +2,10 @@ import { HiHome, HiSearch, HiUser } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import { FcLike } from "react-icons/fc";
 import { FaHeart } from "react-icons/fa6";
+import { useTheme } from "../context/ThemeContext";
 
 const NavigatonComponent = ({ setIsOpen, isOpen }) => {
+  const { theme, updateTheme } = useTheme();
   const menuObject = [
     {
       id: 1,
@@ -41,9 +43,11 @@ const NavigatonComponent = ({ setIsOpen, isOpen }) => {
             to={path}
             key={id}
             className={({ isActive }) =>
-              isActive
-                ? "hover:bg-[#eaeaea] bg-transparent border-none text-left px-3 py-2 transition-colors duration-300 ease-in-out font-inherit no-underline text-base w-full flex gap-[10px] items-center font-bold text-[#0077cc] "
-                : "hover:bg-[#eaeaea] bg-transparent border-none text-left px-3 py-2 transition-colors duration-300 ease-in-out font-inherit no-underline text-[#333] text-base w-full flex gap-[10px] items-center"
+              `${theme === "dark" ? "text-white" : "text-black"} ${
+                isActive
+                  ? "hover:bg-[#eaeaea] bg-transparent border-none text-left px-3 py-2 transition-colors duration-300 ease-in-out font-inherit no-underline text-base w-full flex gap-[10px] items-center font-bold text-[#0077cc]"
+                  : "hover:bg-[#eaeaea] bg-transparent border-none text-left px-3 py-2 transition-colors duration-300 ease-in-out font-inherit no-underline text-[#333] text-base w-full flex gap-[10px] items-center"
+              }`
             }
           >
             {icon} {label}
